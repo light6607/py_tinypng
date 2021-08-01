@@ -8,6 +8,7 @@ a small tool to compress png pictures
 ```
 cd 到项目目录
 python -m venv venv
+source ./venv/bin/activate
 pip install -r requirements.txt
 
 # 查看使用说明
