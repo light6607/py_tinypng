@@ -12,8 +12,8 @@ def get_network_img(category: str, req_num: int, folder: str) -> typing.NoReturn
         url=f'http://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category={category}&tag=%E5%85%A8%E9%83%A8&start=0&len={req_num}')
     img_dict = req.json()
     img_url_list = []
-    for img_tiem in img_dict['all_items']:
-        img_url_list.append(img_tiem['bthumbUrl'])
+    for img_item in img_dict['all_items']:
+        img_url_list.append(img_item['bthumbUrl'])
 
     for index, img_url in enumerate(img_url_list):
         start_time = time.time()
