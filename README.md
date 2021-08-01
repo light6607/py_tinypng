@@ -5,4 +5,13 @@ a small tool to compress png pictures
     - input ： 文件夹
     - ouput :  文件夹
 
+```
+cd 到项目目录
+python -m venv venv
+pip install -r requirements.txt
 
+# 查看使用说明
+python -h
+
+python main.py ./origin_png ./output
+```
