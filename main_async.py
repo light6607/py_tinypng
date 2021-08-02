@@ -46,14 +46,14 @@ async def compress_png(in_file: str, out_file: str) -> typing.NoReturn:
                     f'*** {in_file} origin_size:{origin_size} KB output_size:{output_size} KB compress percent:{compress_percent}%  out:{out_file}***')
 
 
-@clock('程序执行总共耗时')
-def main():
+# @clock('程序执行总共耗时')
+async def main():
     parser = argparse.ArgumentParser(description='Please input your input folder and output folder')
     parser.add_argument('input', help='folder of origin pictures')
     parser.add_argument('output', help='folder to output pictures')
     args = parser.parse_args()
     print(f'your input folder is {args.input}, and output folder is {args.output}')
-    event_loop = asyncio.get_event_loop()
+    # event_loop = asyncio.get_event_loop()
     # for test
     # in_path = "./origin_png"
     # out_path = "./output"
@@ -62,11 +62,18 @@ def main():
     if not os.path.exists(out_path):
         os.makedirs(out_path)
     file_list = os.listdir(in_path)
+    task_list = []
     for filename in file_list:
-        event_loop.run_until_complete(
-            asyncio.gather(compress_png(in_file=f'{in_path}/{filename}', out_file=f'{out_path}/{filename}')))
-    event_loop.close()
+        task_list.append(compress_png(in_file=f'{in_path}/{filename}', out_file=f'{out_path}/{filename}'))
+        # event_loop.run_until_complete(
+        #     asyncio.gather(compress_png(in_file=f'{in_path}/{filename}', out_file=f'{out_path}/{filename}')))
+    # asyncio.gather(**task_list)
+    results = await asyncio.gather(*task_list)
+    for result in results:
+        print(f"执行结果: {result}")
 
 
 if __name__ == '__main__':
-    main()
+    start_time = time.time()
+    asyncio.run(main())
+    print(f'程序执行总耗时:{time.time() - start_time}')
