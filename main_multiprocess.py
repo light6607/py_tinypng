@@ -4,7 +4,7 @@ import time
 import argparse
 import os
 import typing
-from utils.func_time import clock, times_used
+from utils.func_time import clock
 from multiprocessing import Pool
 
 

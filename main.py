@@ -43,13 +43,13 @@ def compress_png(in_file: str, out_file: str) -> typing.NoReturn:
         f'*** {in_file} origin_size:{origin_size} KB output_size:{output_size} KB compress percent:{compress_percent}%  out:{out_file}***')
 
 
-if __name__ == '__main__':
+@clock(msg='主函数执行耗时')
+def main():
     parser = argparse.ArgumentParser(description='Please input your input folder and output folder')
     parser.add_argument('input', help='folder of origin pictures')
     parser.add_argument('output', help='folder to output pictures')
     args = parser.parse_args()
     print(f'your input folder is {args.input}, and output folder is {args.output}')
-
     # for test
     # in_path = "./origin_png"
     # out_path = "./output"
@@ -60,3 +60,7 @@ if __name__ == '__main__':
     file_list = os.listdir(in_path)
     for filename in file_list:
         compress_png(in_file=f'{in_path}/{filename}', out_file=f'{out_path}/{filename}')
+
+
+if __name__ == '__main__':
+    main()

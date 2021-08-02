@@ -132,3 +132,5 @@ dmypy.json
 
 origin_png
 .DS_Store
+/origin_png/
+/output/

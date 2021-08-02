@@ -25,6 +25,6 @@ def get_network_img(category: str, req_num: int, folder: str) -> typing.NoReturn
 
 
 if __name__ == '__main__':
-    if not os.path.exists('../origin_png'):
-        os.makedirs('../origin_png')
-    get_network_img(category='壁纸', req_num=50, folder='../origin_png/')
+    if not os.path.exists('../input'):
+        os.makedirs('../input')
+    get_network_img(category='壁纸', req_num=5, folder='../input/')
